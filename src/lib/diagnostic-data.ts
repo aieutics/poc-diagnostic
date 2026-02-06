@@ -81,7 +81,7 @@ export const DIMENSIONS: Dimension[] = [
     ],
     threshold: 2,
     reflection:
-      "You're likely engaging with the wrong people. In complex organisations, the person who feels the problem, the person who measures the solution, and the person who pays are rarely the same individual.",
+      "You're likely engaging with the wrong people. Complex organisations distribute pain, evaluation authority, and purchasing power across different roles — and the person championing your POC may control none of these.",
     reflectionPrompt:
       "If you can't name all three, your POC is a technical demonstration, not a commercial validation.",
   },
@@ -280,4 +280,4 @@ Each stage of the POC journey requires a different capability. Technical proof. 
 };
 
 export const ATTRIBUTION =
-  "Framework developed by Aieutics, drawing on coaching patterns across private clients, corporate accelerator programmes & consulting engagements.";
+  "Developed by Aieutics from patterns observed across executive coaching, corporate accelerator programmes, and consulting engagements.";

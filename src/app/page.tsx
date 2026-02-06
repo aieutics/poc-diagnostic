@@ -111,8 +111,8 @@ export default function Home() {
       <footer className="px-6 py-6 border-t border-[var(--color-grey-light)]">
         <div className="max-w-4xl mx-auto text-center">
           <p className="font-[family-name:var(--font-body)] text-xs text-[var(--color-grey)]">
-            Framework developed by Aieutics, drawing on coaching patterns across
-            private clients, corporate accelerator programmes & consulting
+            Developed by Aieutics from patterns observed across executive
+            coaching, corporate accelerator programmes, and consulting
             engagements.
           </p>
         </div>
