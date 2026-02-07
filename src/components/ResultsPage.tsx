@@ -93,7 +93,7 @@ export default function ResultsPage({
       </div>
 
       {/* Radar chart */}
-      <div className="border border-[var(--color-grey-light)] rounded-sm p-4 mb-8">
+      <div className="bg-[var(--color-white)] border border-[var(--color-grey-light)] rounded-sm p-4 mb-8">
         <RadarChart results={results} />
       </div>
 
