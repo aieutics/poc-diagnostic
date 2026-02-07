@@ -31,7 +31,7 @@ export default function RadarChart({ results }: RadarChartProps) {
             tick={{
               fontSize: 11,
               fill: "#6b6b6b",
-              fontFamily: "'Alice', 'Lora', Georgia, serif",
+              fontFamily: "'Libre Baskerville', Georgia, serif",
             }}
           />
           <PolarRadiusAxis
