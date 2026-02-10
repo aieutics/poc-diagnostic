@@ -1,43 +1,81 @@
 "use client";
 
 interface ToggleProps {
+  questionId: number;
   value: boolean | null;
   onChange: (value: boolean) => void;
 }
 
-export default function Toggle({ value, onChange }: ToggleProps) {
+export default function Toggle({ questionId, value, onChange }: ToggleProps) {
+  const name = `q-${questionId}`;
+
   return (
-    <div className="flex gap-3">
-      <button
-        type="button"
-        onClick={() => onChange(true)}
+    <fieldset
+      className="relative inline-flex rounded-lg bg-[var(--color-tag-bg)] p-1"
+      role="radiogroup"
+      aria-label="Answer"
+    >
+      {/* Sliding highlight pill */}
+      {value !== null && (
+        <div
+          className="absolute top-1 bottom-1 rounded-md transition-all duration-200 ease-out"
+          style={{
+            left: value === true ? "4px" : "50%",
+            right: value === true ? "50%" : "4px",
+            backgroundColor: value === true ? "#FF5F1F" : "#1a1a1a",
+          }}
+        />
+      )}
+
+      {/* Yes option */}
+      <label
         className={`
-          px-6 py-2.5 rounded-full text-sm font-bold font-[family-name:var(--font-heading)]
-          transition-all duration-200 cursor-pointer
+          relative z-10 flex items-center justify-center
+          px-6 py-2.5 rounded-md text-sm font-bold cursor-pointer
+          font-[family-name:var(--font-heading)]
+          transition-colors duration-200 select-none
           ${
             value === true
-              ? "bg-[var(--color-orange)] text-white shadow-[0_0_0_3px_rgba(255,255,255,1),0_0_0_4px_var(--color-orange)]"
-              : "bg-[var(--color-white)] border border-[var(--color-grey-light)] text-[var(--color-grey)] shadow-sm hover:border-[var(--color-orange)] hover:text-[var(--color-orange)]"
+              ? "text-white"
+              : "text-[var(--color-grey)] hover:text-[var(--color-orange)]"
           }
         `}
       >
+        <input
+          type="radio"
+          name={name}
+          value="yes"
+          checked={value === true}
+          onChange={() => onChange(true)}
+          className="sr-only"
+        />
         Yes
-      </button>
-      <button
-        type="button"
-        onClick={() => onChange(false)}
+      </label>
+
+      {/* No option */}
+      <label
         className={`
-          px-6 py-2.5 rounded-full text-sm font-bold font-[family-name:var(--font-heading)]
-          transition-all duration-200 cursor-pointer
+          relative z-10 flex items-center justify-center
+          px-6 py-2.5 rounded-md text-sm font-bold cursor-pointer
+          font-[family-name:var(--font-heading)]
+          transition-colors duration-200 select-none
           ${
             value === false
-              ? "bg-[var(--color-foreground)] text-white shadow-[0_0_0_3px_rgba(255,255,255,1),0_0_0_4px_var(--color-foreground)]"
-              : "bg-[var(--color-white)] border border-[var(--color-grey-light)] text-[var(--color-grey)] shadow-sm hover:border-[var(--color-foreground)] hover:text-[var(--color-foreground)]"
+              ? "text-white"
+              : "text-[var(--color-grey)] hover:text-[var(--color-foreground)]"
           }
         `}
       >
+        <input
+          type="radio"
+          name={name}
+          value="no"
+          checked={value === false}
+          onChange={() => onChange(false)}
+          className="sr-only"
+        />
         No
-      </button>
-    </div>
+      </label>
+    </fieldset>
   );
 }

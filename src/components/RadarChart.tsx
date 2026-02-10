@@ -24,8 +24,8 @@ export default function RadarChart({ results }: RadarChartProps) {
   return (
     <div className="w-full h-[350px] md:h-[400px]">
       <ResponsiveContainer width="100%" height="100%">
-        <RechartsRadarChart data={data} cx="50%" cy="50%" outerRadius="70%">
-          <PolarGrid stroke="#e5e5e5" />
+        <RechartsRadarChart data={data} cx="50%" cy="50%" outerRadius="75%">
+          <PolarGrid stroke="#e5e5e5" strokeDasharray="2 2" />
           <PolarAngleAxis
             dataKey="dimension"
             tick={{
@@ -37,15 +37,23 @@ export default function RadarChart({ results }: RadarChartProps) {
           <PolarRadiusAxis
             angle={90}
             domain={[0, 100]}
-            tick={{ fontSize: 10, fill: "#6b6b6b" }}
-            tickCount={4}
+            tick={false}
+            axisLine={false}
+          />
+          <Radar
+            name="Max"
+            dataKey="fullMark"
+            stroke="#e5e5e5"
+            fill="none"
+            strokeWidth={1}
+            strokeDasharray="4 4"
           />
           <Radar
             name="Score"
             dataKey="score"
             stroke="#FF5F1F"
             fill="#FF5F1F"
-            fillOpacity={0.15}
+            fillOpacity={0.12}
             strokeWidth={2}
           />
         </RechartsRadarChart>

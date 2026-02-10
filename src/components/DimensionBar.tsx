@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import type { DimensionResult } from "@/lib/diagnostic-data";
 
 interface DimensionBarProps {
@@ -14,38 +11,54 @@ const statusColors = {
   red: "var(--color-red)",
 };
 
+const statusDimColors = {
+  green: "rgba(90, 154, 110, 0.12)",
+  amber: "rgba(212, 148, 58, 0.12)",
+  red: "rgba(239, 68, 68, 0.12)",
+};
+
 const statusLabels = {
   green: "Strong",
   amber: "Partial",
   red: "At Risk",
 };
 
-export default function DimensionBar({ result, index }: DimensionBarProps) {
+export default function DimensionBar({ result }: DimensionBarProps) {
   const color = statusColors[result.status];
+  const dimColor = statusDimColors[result.status];
   const label = statusLabels[result.status];
 
   return (
-    <div className="mb-4">
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="font-[family-name:var(--font-heading)] text-sm font-bold">
-          {result.dimension.name}
-        </span>
+    <div className="rounded-xl border border-[var(--color-grey-light)] bg-[var(--color-white)] p-4 mb-3">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2.5">
+          <span
+            className="w-2 h-2 rounded-full flex-shrink-0"
+            style={{ backgroundColor: color }}
+          />
+          <span className="font-[family-name:var(--font-heading)] text-sm font-bold">
+            {result.dimension.name}
+          </span>
+        </div>
         <div className="flex items-center gap-2">
-          <span className="font-[family-name:var(--font-heading)] text-xs font-bold" style={{ color }}>
+          <span
+            className="text-xs font-bold px-2 py-0.5 rounded-md font-[family-name:var(--font-heading)]"
+            style={{ color, backgroundColor: dimColor }}
+          >
             {label}
           </span>
-          <span className="font-[family-name:var(--font-body)] text-xs text-[var(--color-grey)]">
+          <span className="font-[family-name:var(--font-mono)] text-xs text-[var(--color-grey)]">
             {result.score}/{result.maxScore}
           </span>
         </div>
       </div>
-      <div className="relative h-2.5 bg-[var(--color-grey-light)] rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${result.percentage}%` }}
-          transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
-          className="absolute h-full rounded-full"
-          style={{ backgroundColor: color }}
+      <div className="relative h-1.5 bg-[var(--color-grey-light)] rounded-full overflow-hidden">
+        <div
+          className="absolute h-full rounded-full transition-all duration-700 ease-out"
+          style={{
+            width: `${result.percentage}%`,
+            backgroundColor: color,
+          }}
         />
       </div>
     </div>

@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import type { PatternInterpretation } from "@/lib/diagnostic-data";
 
 interface PatternInsightProps {
@@ -15,13 +12,10 @@ export default function PatternInsight({ patterns }: PatternInsightProps) {
       <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold mb-4">
         Your Profile Pattern
       </h3>
-      {patterns.map((pattern, i) => (
-        <motion.div
+      {patterns.map((pattern) => (
+        <div
           key={pattern.id}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 + i * 0.15 }}
-          className="border border-[var(--color-grey-light)] rounded-sm p-5 mb-3"
+          className="border border-[var(--color-grey-light)] rounded-xl p-5 mb-3"
         >
           <h4 className="font-[family-name:var(--font-heading)] text-sm font-bold text-[var(--color-orange)] mb-2">
             {pattern.label}
@@ -29,7 +23,7 @@ export default function PatternInsight({ patterns }: PatternInsightProps) {
           <p className="font-[family-name:var(--font-body)] text-sm text-[var(--color-foreground)] leading-relaxed">
             {pattern.description}
           </p>
-        </motion.div>
+        </div>
       ))}
     </div>
   );

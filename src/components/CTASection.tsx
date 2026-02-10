@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { CTA_COPY, ATTRIBUTION } from "@/lib/diagnostic-data";
 
 interface CTASectionProps {
@@ -9,13 +6,8 @@ interface CTASectionProps {
 
 export default function CTASection({ redCount }: CTASectionProps) {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1 }}
-      className="mt-10"
-    >
-      <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold mb-4">
+    <section className="mt-10">
+      <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold mb-4">
         {CTA_COPY.heading}
       </h3>
       {CTA_COPY.body.split("\n\n").map((para, i) => (
@@ -28,16 +20,16 @@ export default function CTASection({ redCount }: CTASectionProps) {
       ))}
 
       {redCount >= 2 && (
-        <div className="bg-[var(--color-warm-bg)] border-l-4 border-[var(--color-orange)] p-5 rounded-sm mb-6">
-          <p className="font-[family-name:var(--font-body)] text-base font-semibold leading-relaxed">
+        <div className="border border-[var(--color-orange)] bg-[var(--color-orange-vsoft)] rounded-xl p-5 mb-6">
+          <p className="font-[family-name:var(--font-body)] text-base font-bold leading-relaxed">
             {CTA_COPY.callout}
           </p>
         </div>
       )}
 
       {/* Contact card */}
-      <div className="border border-[var(--color-grey-light)] rounded-sm p-6 mt-6">
-        <p className="font-[family-name:var(--font-heading)] text-base font-bold mb-1">
+      <div className="bg-white border border-[var(--color-grey-light)] rounded-xl p-6 mt-6">
+        <p className="font-[family-name:var(--font-heading)] text-sm font-bold mb-1">
           {CTA_COPY.contact.name}
         </p>
         <p className="font-[family-name:var(--font-body)] text-sm text-[var(--color-grey)] mb-1">
@@ -68,6 +60,6 @@ export default function CTASection({ redCount }: CTASectionProps) {
       <p className="font-[family-name:var(--font-body)] text-xs text-[var(--color-grey)] mt-8 italic">
         {ATTRIBUTION}
       </p>
-    </motion.section>
+    </section>
   );
 }

@@ -1,14 +1,12 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import HeroVideo from "@/components/HeroVideo";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="px-6 py-6 md:px-12">
+      <header className="px-6 py-6 md:px-12 relative z-10">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Image
             src="/aieutics_transparentbg_logo.png"
@@ -17,66 +15,46 @@ export default function Home() {
             height={80}
             className="h-20 w-auto"
           />
-          <span className="font-[family-name:var(--font-body)] text-sm text-[var(--color-grey)] italic hidden sm:inline">
+          <span className="font-[family-name:var(--font-body)] text-sm text-white/70 italic hidden sm:inline">
             See further. Think deeper. Break through.
           </span>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="flex-1 flex items-center justify-center px-6 py-16 md:py-24">
-        <div className="max-w-2xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              POC Lifecycle
-              <br />
-              <span className="text-[var(--color-orange)]">Diagnostic</span>
-            </h1>
-          </motion.div>
+      <section className="flex-1 flex items-center justify-center px-6 py-16 md:py-24 relative overflow-hidden">
+        {/* Video background */}
+        <HeroVideo />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <p className="font-[family-name:var(--font-body)] text-lg md:text-xl text-[var(--color-grey)] leading-relaxed mb-4">
-              18 binary questions. 5 dimensions. No middle ground.
-            </p>
-            <p className="font-[family-name:var(--font-body)] text-base md:text-lg text-[var(--color-grey)] leading-relaxed mb-10">
-              A self-assessment for founders navigating proof of concept to
-              contract. Identify where your POC is at risk — before it costs
-              you.
-            </p>
-          </motion.div>
+        <div className="max-w-2xl mx-auto text-center relative z-10">
+          <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
+            POC Lifecycle
+            <br />
+            <span className="text-[var(--color-orange)]">Diagnostic</span>
+          </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+          <p className="font-[family-name:var(--font-body)] text-lg md:text-xl text-white/80 leading-relaxed mb-4">
+            18 binary questions. 5 dimensions. No middle ground.
+          </p>
+          <p className="font-[family-name:var(--font-body)] text-base md:text-lg text-white/70 leading-relaxed mb-10">
+            A self-assessment for founders navigating proof of concept to contract.
+            <br />
+            Identify where your POC is at risk — before it costs you.
+          </p>
+
+          <Link
+            href="/diagnostic"
+            className="inline-block bg-[var(--color-orange)] text-white font-[family-name:var(--font-heading)] font-bold text-lg px-12 py-4 rounded-xl shadow-[0_0_20px_rgba(255,95,31,0.2)] hover:shadow-[0_0_40px_rgba(255,95,31,0.3)] hover:scale-[1.02] transition-all duration-300"
           >
-            <Link
-              href="/diagnostic"
-              className="inline-block bg-[var(--color-orange)] text-white font-[family-name:var(--font-heading)] font-bold text-lg px-12 py-4 rounded-full shadow-[0_0_0_4px_rgba(255,255,255,1),0_0_0_5px_var(--color-grey-light)] hover:shadow-[0_0_0_4px_rgba(255,255,255,1),0_0_0_6px_var(--color-orange)] hover:scale-[1.02] transition-all duration-200"
-            >
-              Start the Diagnostic
-            </Link>
-            <p className="font-[family-name:var(--font-body)] text-sm text-[var(--color-grey)] mt-4">
-              Takes 3–5 minutes. Only what is concretely true today counts as
-              Yes.
-            </p>
-          </motion.div>
+            Start the Diagnostic
+          </Link>
+          <p className="font-[family-name:var(--font-body)] text-sm text-white/60 mt-4">
+            Takes 3–5 minutes. Only what is concretely true today counts as
+            Yes.
+          </p>
 
           {/* Dimensions preview */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="mt-16 grid grid-cols-1 sm:grid-cols-5 gap-4 text-left"
-          >
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-5 gap-4 text-left">
             {[
               { label: "Problem Economics", desc: "Is it worth solving?" },
               {
@@ -98,22 +76,22 @@ export default function Home() {
             ].map((dim, i) => (
               <div
                 key={i}
-                className="border border-[var(--color-grey-light)] rounded-sm p-3"
+                className="border border-white/20 rounded-xl p-3 hover:border-[var(--color-orange)] hover:shadow-[0_0_20px_rgba(255,95,31,0.1)] transition-all duration-300 bg-black/30 backdrop-blur-sm"
               >
                 <p className="font-[family-name:var(--font-heading)] text-xs font-bold uppercase tracking-wider text-[var(--color-orange)] mb-1">
                   {dim.label}
                 </p>
-                <p className="font-[family-name:var(--font-body)] text-xs text-[var(--color-grey)]">
+                <p className="font-[family-name:var(--font-body)] text-xs text-white/60">
                   {dim.desc}
                 </p>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-6 border-t border-[var(--color-grey-light)]">
+      <footer className="px-6 py-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-3">
           <Image
             src="/aieutics_transparentbg_logo.png"
@@ -122,7 +100,7 @@ export default function Home() {
             height={24}
             className="h-6 w-auto opacity-40"
           />
-          <p className="font-[family-name:var(--font-body)] text-xs text-[var(--color-grey)]">
+          <p className="font-[family-name:var(--font-body)] text-xs text-white/50">
             Developed by Aieutics from patterns observed across executive
             coaching, corporate accelerator programmes, and consulting
             engagements.
